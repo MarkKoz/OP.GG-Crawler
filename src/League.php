@@ -21,14 +21,15 @@ class League {
     }
 
     public function getJSON() {
-        return json_encode(array(
-                               "tier" => $this->tier,
-                               "division" => $this->division,
-                               "lp" => $this->lp,
-                               "wins" => $this->wins,
-                               "losses" => $this->losses,
-                               "ratio" => $this->ratio,
-                           ));
+        return json_encode(
+            array(
+                "tier" => $this->tier,
+                "division" => $this->division,
+                "lp" => $this->lp,
+                "wins" => $this->wins,
+                "losses" => $this->losses,
+                "ratio" => $this->ratio,
+            ));
     }
 
     private function getRank() {

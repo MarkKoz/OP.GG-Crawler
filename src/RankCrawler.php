@@ -14,27 +14,30 @@ class RankCrawler {
         $this->summoner = $summoner;
         $this->region = $region;
         $this->client = new Client();
-        $this->crawler = $this->client->request('GET',
-                                                'https://' .
-                                                $this->region .
-                                                '.op.gg/summoner/userName=' .
-                                                $this->summoner);
+        $this->crawler = $this->client->request(
+            'GET',
+            'https://' .
+            $this->region .
+            '.op.gg/summoner/userName=' .
+            $this->summoner);
         $this->validateSummoner();
     }
 
     private function validateSummoner() {
         if ($this->crawler->filter('.SummonerNotFoundLayout')->count()) {
-            throw new RuntimeException('Summoner \'' .
-                                       $this->summoner .
-                                       '\' could not be found.');
+            throw new RuntimeException(
+                'Summoner \'' .
+                $this->summoner .
+                '\' could not be found.');
         }
     }
 
     private function getNode($pattern) {
         try {
-            return str_replace(',',
-                               '',
-                               trim($this->crawler->filter($pattern)->text()));
+            return str_replace(
+                ',',
+                '',
+                trim($this->crawler->filter($pattern)->text()));
         } catch (InvalidArgumentException $e) {
             return '';
         }
