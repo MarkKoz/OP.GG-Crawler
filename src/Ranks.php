@@ -4,14 +4,14 @@ spl_autoload_register(function ($class) {
     include $class . '.php';
 });
 
-header("content-type:application/json");
-
-/*try {
+try {
     $crawler = new RankCrawler($_POST['summoner'], $_POST['region']);
 } catch (RuntimeException $e) {
     header('HTTP/1.1 400 '. $e->getMessage());
     exit();
 }
+
+header("content-type:application/json");
 
 switch ($_POST['league']) {
     case 'Solo/Duo':
@@ -26,20 +26,4 @@ switch ($_POST['league']) {
 }
 
 echo $league->getJSON();
-exit();*/
-
-try {
-    $crawler = new RankCrawler('Brizi', 'na');
-} catch (RuntimeException $e) {
-    header('HTTP/1.1 400 '. $e->getMessage());
-    exit();
-}
-
-$league = new League($crawler->getThree());
-echo $league->getJSON();
-
-/*foreach ($league as $stat) {
-    if (!empty($stat)) {
-        print $stat . "\n";
-    }
-}*/
+exit();
