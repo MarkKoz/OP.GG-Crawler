@@ -2,5 +2,8 @@
     "require": {
         "php": "^7.0",
         "fabpot/goutte": "^3.2"
+    },
+    "config": {
+        "vendor-dir": "./src/vendor"
     }
 }
